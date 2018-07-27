@@ -59,6 +59,7 @@ export default class NetworkAddressChanger extends React.Component{
 
     update_device_addresses() {
         let new_devices = this.state.devices.map((device) => {
+            this.dumbsleep(500);
             if (this.state.move_map_marker) {
                 device.moveMapMarker = "true";
             }
@@ -82,6 +83,15 @@ export default class NetworkAddressChanger extends React.Component{
                 return device;
             });
         })
+    }
+
+    dumbsleep(milliseconds) {
+        var start = new Date().getTime();
+        for (var i = 0; i < 1e7; i++) {
+            if ((new Date().getTime() - start) > milliseconds){
+                break;
+            }
+        }
     }
 
     // ui building blocks here
